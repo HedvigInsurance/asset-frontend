@@ -8,7 +8,7 @@ export const getAssets = payload => ({
     payload
 })
 
-export const updateAsset = id => ({
+export const updateAsset = asset => ({
     type: UPDATE_ASSET_REQUEST,
-    id
+    asset
 })
