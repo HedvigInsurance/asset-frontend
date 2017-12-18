@@ -8,4 +8,4 @@ logging:
 
 spring:
   profiles:
-    active: dev
+    active: development

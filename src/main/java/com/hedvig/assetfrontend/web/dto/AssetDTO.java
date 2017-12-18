@@ -1,6 +1,5 @@
 package com.hedvig.assetfrontend.web.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hedvig.assetfrontend.constant.AssetState;
 import com.hedvig.assetfrontend.domain.Asset;
 import lombok.Value;

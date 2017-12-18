@@ -1,10 +1,9 @@
-package com.hedvig.assetfrontend;
+package com.hedvig.assetfrontend.services.assettracker;
 
 import com.hedvig.assetfrontend.constant.AssetState;
 import com.hedvig.assetfrontend.domain.Asset;
 import com.hedvig.assetfrontend.domain.Login;
 import lombok.val;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +17,9 @@ import java.util.UUID;
  */
 
 @Component
-public class DatabaseLoader implements CommandLineRunner {
-    private final EntityManager entityManager;
+public class DatabaseLoader {
 
+    private final EntityManager entityManager;
     private final PasswordEncoder passwordEncoder;
 
     public DatabaseLoader(EntityManager entityManager, PasswordEncoder passwordEncoder) {
@@ -28,9 +27,8 @@ public class DatabaseLoader implements CommandLineRunner {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
     @Transactional
-    public void run(String... strings) {
+    public void loadData() {
         val login = new Login("victor@hedvig.com", passwordEncoder.encode("123"));
         entityManager.persist(login);
 
