@@ -28,10 +28,13 @@ public class DatabaseLoader {
     }
 
     @Transactional
-    public void loadData() {
+    public void createUser() {
         val login = new Login("victor@hedvig.com", passwordEncoder.encode("123"));
         entityManager.persist(login);
+    }
 
+    @Transactional
+    public void loadData() {
         for (int i = 0; i < 100; i++) {
             val id = UUID.randomUUID().toString();
             val asset = new Asset(
