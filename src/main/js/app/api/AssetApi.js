@@ -1,30 +1,29 @@
 import axios from 'axios';
 import config from './config';
 
-export default class AssetApi {
-    constructor() {
-        this.api = axios.create({
-            baseURL: config.baseUrl,
-            timeout: 10000,
-            withCredentials: false,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+const axiosInstance = axios.create({
+    baseURL: config.baseUrl,
+    timeout: 10000,
+    withCredentials: false,
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     }
+});
 
-    async get() {
-        return await this.api.request({
-            method: config.asset.get.method,
-            url: config.asset.get.url,
-        })
-    }
+const get = async () => {
+    return await axiosInstance.request({
+        url: config.asset.get.url,
+        method: config.asset.get.method
+    });
+};
 
-    async update() {
-        return await this.api.request({
-            method: config.asset.update.method,
-            url: config.asset.update.url,
-        })
-    }
-}
+const update = async () => {
+    return await axiosInstance.request({
+        url: config.asset.update.url,
+        method: config.asset.update.method
+    });
+};
+
+export default { get, update };

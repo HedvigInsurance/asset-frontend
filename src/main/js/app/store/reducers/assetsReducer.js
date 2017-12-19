@@ -11,46 +11,13 @@ import {
 export default function(state = initialState.assets, action) {
     switch (action.type) {
         case ASSET_UPDATING:
-            return {
-                ...state,
-                requesting: true,
-                successful: false,
-                messages: [
-                    {
-                        body: `Widget: ${action.asset.name} being updated...`,
-                        time: new Date()
-                    }
-                ],
-                errors: []
-            };
+            return state;
 
         case ASSET_UPDATE_SUCCESS:
-            return {
-                list: state.list.concat([action.asset]),
-                requesting: false,
-                successful: true,
-                messages: [
-                    {
-                        body: `Widget: ${action.asset.name} updated!`,
-                        time: new Date()
-                    }
-                ],
-                errors: []
-            };
+            return state;
 
         case ASSET_UPDATE_ERROR:
-            return {
-                ...state,
-                requesting: false,
-                successful: false,
-                messages: [],
-                errors: state.errors.concat([
-                    {
-                        body: action.error.toString(),
-                        time: new Date()
-                    }
-                ])
-            };
+            return state;
 
         case ASSET_REQUESTING:
             return {
@@ -59,7 +26,7 @@ export default function(state = initialState.assets, action) {
                 successful: true,
                 messages: [
                     {
-                        body: 'Fetching assets...!',
+                        body: 'Fetching assets',
                         time: new Date()
                     }
                 ],
@@ -73,7 +40,7 @@ export default function(state = initialState.assets, action) {
                 successful: true,
                 messages: [
                     {
-                        body: 'Widgets awesomely fetched!',
+                        body: 'Assets fetched',
                         time: new Date()
                     }
                 ],

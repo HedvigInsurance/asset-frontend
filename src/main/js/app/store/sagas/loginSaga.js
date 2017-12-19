@@ -1,6 +1,6 @@
 import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects';
 import { history } from 'react-router';
-import LoginApi from '../../api/LoginApi';
+import api from '../../api/LoginApi';
 
 import {
     LOGIN_REQUESTING,
@@ -10,8 +10,6 @@ import {
 } from '../constants/actionTypes';
 
 import { setClient, unsetClient } from '../actions/clientActions';
-
-const api = new LoginApi();
 
 function* logout() {
     yield put(unsetClient());

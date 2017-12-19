@@ -1,7 +1,8 @@
 import { setClient } from '../store/actions';
 
 function checkAuthorization(dispatch) {
-    const storedToken = '';//localStorage.getItem('token');
+// eslint-disable-next-line no-undef
+    const storedToken = localStorage.getItem('token');
     if (storedToken) {
         const token = JSON.parse(storedToken);
         const createdDate = new Date(token.created);
@@ -17,26 +18,12 @@ function checkAuthorization(dispatch) {
 
     return false;
 }
-
-export function checkIndexAuthorization({ dispatch }) {
-    return (nextState, replace, next) => {
-        if (checkAuthorization(dispatch)) {
-            replace('assets');
-
-            return next();
-        }
-
-        replace('login');
-        return next();
-    };
-}
-
+/*eslint-disable*/
 export function checkAssetAuthorization({ dispatch, getState }) {
-    return (nextState, replace, next) => {
-        const client = getState().client;
-        if (client && client.token) return next();
-        if (checkAuthorization(dispatch)) return next();
-        replace('login');
-        return next();
-    };
+    // TODO remove next return
+    return true;
+    const client = getState().client;
+    if (client && client.token) return true;
+    return checkAuthorization(dispatch);
+
 }

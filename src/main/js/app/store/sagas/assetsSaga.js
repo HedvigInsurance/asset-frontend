@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import AssetsApi from '../../api/AssetApi';
+import api from '../../api/AssetApi';
 
 import { ASSET_UPDATING, ASSET_REQUESTING } from '../constants/actionTypes';
 
@@ -9,8 +9,6 @@ import {
     assetRequestSuccess,
     assetRequestError
 } from '../actions/assetsActions';
-
-const api = new AssetsApi();
 
 function* assetUpdateFlow(action) {
     try {

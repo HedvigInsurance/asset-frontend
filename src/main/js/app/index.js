@@ -12,10 +12,6 @@ import App from './app';
 
 const appElement = document.getElementById('react');
 
-/*eslint-disable*/
-console.log(appElement);
-console.log(App);
-
 ReactDOM.render(
     <App />,
     appElement

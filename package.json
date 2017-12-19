@@ -15,7 +15,9 @@
   "homepage": "https://github.com/HedvigInsurance/asset-tracker",
   "dependencies": {
     "axios": "^0.17.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "history": "^4.7.2",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",

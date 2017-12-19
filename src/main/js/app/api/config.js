@@ -1,5 +1,5 @@
 export default {
-    baseUrl: 'http://localhost:9000/api/',
+    baseUrl: 'http://localhost:8080/api/',
     asset: {
         get: {
             method: 'get',
@@ -21,4 +21,4 @@ export default {
             url: 'logout'
         }
     }
-}
+};
