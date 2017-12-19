@@ -1,10 +1,9 @@
-import { fork } from 'redux-saga/effects';
-import { getAssetsFlow, updateAssetFlow } from './assetsSaga';
-import { logoutFlow, loginFlow } from './loginSaga';
+import LoginSaga from './loginSaga';
+import AssetsSaga from './assetsSaga';
 
-export default function* startForman() {
-    yield fork(loginFlow);
-    yield fork(logoutFlow);
-    yield fork(getAssetsFlow);
-    yield fork(updateAssetFlow);
+export default function* IndexSaga () {
+  yield [
+    LoginSaga(),
+    AssetsSaga(),
+  ]
 }

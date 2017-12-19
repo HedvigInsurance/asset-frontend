@@ -1,83 +1,58 @@
+import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
-import { take, call, put, race } from 'redux-saga/effects';
-import Api from '../../api';
+import { LoginApi } from '../../api';
+
 import {
-    SENDING_REQUEST,
-    LOGIN_REQUEST,
-    SET_AUTH,
-    LOGOUT,
-    CHANGE_FORM,
-    REQUEST_ERROR
-} from '../constants/actionsTypes';
+    LOGIN_REQUESTING,
+    LOGIN_SUCCESS,
+    LOGIN_ERROR,
+    CLIENT_UNSET
+} from '../constants/actionTypes';
 
-const auth = Api.auth;
+import { setClient, unsetClient } from '../actions/loginActions';
 
-/**
- * Effect to handle authorization
- */
-export function* authorize({ username, password }) {
-    yield put({ type: SENDING_REQUEST, sending: true });
+const api = new LoginApi();
 
+function* logout() {
+    yield put(unsetClient());
+    // localStorage.removeItem('token')
+    browserHistory.push('/login');
+}
+
+function* loginFlow(email, password) {
+    let token;
     try {
-        const response = yield call(auth.login, username, password);
+        token = yield call(api.loginApi, email, password);
 
-        return response;
+        yield put(setClient(token));
+
+        yield put({ type: LOGIN_SUCCESS });
+
+        // localStorage.setItem('token', JSON.stringify(token))
+
+        browserHistory.push('/');
     } catch (error) {
-        yield put({ type: REQUEST_ERROR, error: error.message });
-        return false;
+        yield put({ type: LOGIN_ERROR, error });
     } finally {
-        yield put({ type: SENDING_REQUEST, sending: false });
-    }
-}
-
-/**
- * Effect to handle logging out
- */
-export function* logout() {
-    yield put({ type: SENDING_REQUEST, sending: true });
-    try {
-        const response = yield call(auth.logout);
-        yield put({ type: SENDING_REQUEST, sending: false });
-
-        return response;
-    } catch (error) {
-        yield put({ type: REQUEST_ERROR, error: error.message });
-    }
-}
-
-/**
- * Log in saga
- */
-export function* loginFlow() {
-    while (true) {
-        const request = yield take(LOGIN_REQUEST);
-        const { username, password } = request.data;
-        const winner = yield race({
-            auth: call(authorize, { username, password, isRegistering: false }),
-            logout: take(LOGOUT)
-        });
-
-        if (winner.auth) {
-            yield put({ type: SET_AUTH, newAuthState: true });
-            yield put({
-                type: CHANGE_FORM,
-                newFormState: { username: '', password: '' }
-            });
-            browserHistory.push('/');
+        if (yield cancelled()) {
+            browserHistory.push('/login');
         }
     }
+
+    return token;
 }
 
-/**
- * Log out saga
- */
-export function* logoutFlow() {
+function* loginWatcher() {
     while (true) {
-        yield take(LOGOUT);
-        yield put({ type: SET_AUTH, newAuthState: false });
+        const { email, password } = yield take(LOGIN_REQUESTING);
+        const task = yield fork(loginFlow, email, password);
+
+        const action = yield take([CLIENT_UNSET, LOGIN_ERROR]);
+
+        if (action.type === CLIENT_UNSET) yield cancel(task);
 
         yield call(logout);
-        browserHistory.push('/login');
     }
 }
 
+export default loginWatcher;
