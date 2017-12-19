@@ -13,7 +13,8 @@ import { setClient, unsetClient } from '../actions/clientActions';
 
 function* logout() {
     yield put(unsetClient());
-    // localStorage.removeItem('token')
+    // eslint-disable-next-line no-undef
+    localStorage.removeItem('token');
     history.push('/login');
 }
 
@@ -25,8 +26,8 @@ function* loginFlow(email, password) {
         yield put(setClient(token));
 
         yield put({ type: LOGIN_SUCCESS });
-
-        // localStorage.setItem('token', JSON.stringify(token))
+        // eslint-disable-next-line no-undef
+        localStorage.setItem('token', JSON.stringify(token));
 
         history.push('/');
     } catch (error) {

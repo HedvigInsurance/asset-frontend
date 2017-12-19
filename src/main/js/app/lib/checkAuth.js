@@ -1,7 +1,7 @@
 import { setClient } from '../store/actions';
 
 function checkAuthorization(dispatch) {
-// eslint-disable-next-line no-undef
+    // eslint-disable-next-line no-undef
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
         const token = JSON.parse(storedToken);
@@ -25,5 +25,4 @@ export function checkAssetAuthorization({ dispatch, getState }) {
     const client = getState().client;
     if (client && client.token) return true;
     return checkAuthorization(dispatch);
-
 }
