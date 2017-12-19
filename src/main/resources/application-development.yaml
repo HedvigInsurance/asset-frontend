@@ -2,3 +2,6 @@ security:
   basic:
     enabled: true
     authorize-mode: NONE
+
+tracker:
+  stub: true

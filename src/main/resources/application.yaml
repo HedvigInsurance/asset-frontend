@@ -8,10 +8,16 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:h2:file:~/test
+    url: jdbc:h2:file:~/memorydb
     username: sa
     password:
     driver-class-name: org.h2.Driver
 
   profiles:
     active: development
+
+job:
+  interval: 10000
+
+tracker:
+  stub: false

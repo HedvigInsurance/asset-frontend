@@ -1,7 +1,5 @@
-package com.hedvig.assetfrontend.services.assettracker;
+package com.hedvig.assetfrontend.services;
 
-import com.hedvig.assetfrontend.constant.AssetState;
-import com.hedvig.assetfrontend.domain.Asset;
 import com.hedvig.assetfrontend.domain.Login;
 import lombok.val;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,8 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * Prepare test data, this is only needed in development.
@@ -31,23 +27,5 @@ public class DatabaseLoader {
     public void createUser() {
         val login = new Login("victor@hedvig.com", passwordEncoder.encode("123"));
         entityManager.persist(login);
-    }
-
-    @Transactional
-    public void loadData() {
-        for (int i = 0; i < 100; i++) {
-            val id = UUID.randomUUID().toString();
-            val asset = new Asset(
-                    id,
-                    "http://thecatapi.com/?id=60m",
-                    "http://thecatapi.com/?id=3hn",
-                    "Asset number " + i,
-                    AssetState.PENDING,
-                    i % 2 == 0,
-                    "user-id-" + (i % 10),
-                    LocalDate.now()
-            );
-            entityManager.persist(asset);
-        }
     }
 }
