@@ -1,6 +1,6 @@
 import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects';
-import { browserHistory } from 'react-router';
-import { LoginApi } from '../../api';
+import { history } from 'react-router';
+import LoginApi from '../../api/LoginApi';
 
 import {
     LOGIN_REQUESTING,
@@ -9,20 +9,20 @@ import {
     CLIENT_UNSET
 } from '../constants/actionTypes';
 
-import { setClient, unsetClient } from '../actions/loginActions';
+import { setClient, unsetClient } from '../actions/clientActions';
 
 const api = new LoginApi();
 
 function* logout() {
     yield put(unsetClient());
     // localStorage.removeItem('token')
-    browserHistory.push('/login');
+    history.push('/login');
 }
 
 function* loginFlow(email, password) {
     let token;
     try {
-        token = yield call(api.loginApi, email, password);
+        token = yield call(api.login, email, password);
 
         yield put(setClient(token));
 
@@ -30,12 +30,12 @@ function* loginFlow(email, password) {
 
         // localStorage.setItem('token', JSON.stringify(token))
 
-        browserHistory.push('/');
+        history.push('/');
     } catch (error) {
         yield put({ type: LOGIN_ERROR, error });
     } finally {
         if (yield cancelled()) {
-            browserHistory.push('/login');
+            history.push('/login');
         }
     }
 

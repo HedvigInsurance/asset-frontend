@@ -5,7 +5,7 @@ import {
     LOGIN_ERROR
 } from '../constants/actionTypes';
 
-export default function(state = initialState.user, action) {
+export default function(state = initialState.login, action) {
     switch (action.type) {
         case LOGIN_REQUESTING:
             return {

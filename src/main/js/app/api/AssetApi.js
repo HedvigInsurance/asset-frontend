@@ -6,6 +6,7 @@ export default class AssetApi {
         this.api = axios.create({
             baseURL: config.baseUrl,
             timeout: 10000,
+            withCredentials: false,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -14,22 +15,16 @@ export default class AssetApi {
     }
 
     async get() {
-        return this.api.request({
+        return await this.api.request({
             method: config.asset.get.method,
             url: config.asset.get.url,
-            params: {
-
-            }
         })
     }
 
     async update() {
-        return this.api.request({
+        return await this.api.request({
             method: config.asset.update.method,
             url: config.asset.update.url,
-            params: {
-
-            }
         })
     }
 }

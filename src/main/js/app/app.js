@@ -1,27 +1,29 @@
-"use strict";
+'use strict';
 
-import 'babel-polyfill';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router';
-import { ConnectedRouter } from 'react-router-redux';
+import { Router, Route, Switch } from 'react-router';
+import createBrowserHistory from 'history/createBrowserHistory'
+
 import Routes from './routes';
 import Store from './store';
 
-const { configureStore, history } = Store;
+const history = createBrowserHistory();
+
+const { configureStore } = Store;
 const store = configureStore();
 
 export default class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <ConnectedRouter history={history}>
+                <Router history={history}>
                     <Switch>
-                        <Route path='/login' component={Routes.LoginPage}/>
-                        <Route path='/' component={Routes.Main}/>
-                        <Redirect from='*' to="/"/>
+                        <Route path="/login" component={Routes.LoginPageRoute} />
+                        <Route path="/assets" component={Routes.MainPageRoute} />
+                        <Route component={Routes.LoginPageRoute}/>
                     </Switch>
-                </ConnectedRouter>
+                </Router>
             </Provider>
         );
     }

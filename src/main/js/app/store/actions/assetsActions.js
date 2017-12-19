@@ -1,30 +1,30 @@
 import {
-    ASSET_CREATING,
-    ASSET_CREATE_SUCCESS,
-    ASSET_CREATE_ERROR,
+    ASSET_UPDATING,
+    ASSET_UPDATE_SUCCESS,
+    ASSET_UPDATE_ERROR,
     ASSET_REQUESTING,
     ASSET_REQUEST_SUCCESS,
     ASSET_REQUEST_ERROR
 } from '../constants/actionTypes';
 
-export const assetCreate = function assetCreate(client, asset) {
+export const assetUpdate = function assetUpdate(client, asset) {
     return {
-        type: ASSET_CREATING,
+        type: ASSET_UPDATING,
         client,
         asset
     };
 };
 
-export const assetCreateSuccess = function assetCreateSuccess(asset) {
+export const assetUpdateSuccess = function assetUpdateSuccess(asset) {
     return {
-        type: ASSET_CREATE_SUCCESS,
+        type: ASSET_UPDATE_SUCCESS,
         asset
     };
 };
 
-export const assetCreateError = function assetCreateError(error) {
+export const assetUpdateError = function assetUpdateError(error) {
     return {
-        type: ASSET_CREATE_ERROR,
+        type: ASSET_UPDATE_ERROR,
         error
     };
 };
