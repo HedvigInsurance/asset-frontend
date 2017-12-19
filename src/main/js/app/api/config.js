@@ -3,11 +3,11 @@ export default {
     asset: {
         get: {
             method: 'get',
-            url: 'assets'
+            url: 'api/assets'
         },
         update: {
             method: 'post',
-            url: 'assets'
+            url: 'api/assets'
         }
     },
     // TODO fix login url

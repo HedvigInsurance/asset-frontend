@@ -35,7 +35,7 @@ export default function(state = initialState.assets, action) {
 
         case ASSET_REQUEST_SUCCESS:
             return {
-                list: action.assets,
+                list: action.assets.data,
                 requesting: false,
                 successful: true,
                 messages: [

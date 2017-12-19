@@ -22,13 +22,15 @@ class MainPage extends React.Component {
         const list =
             this.props.assets.list &&
             this.props.assets.list.map(item => (
-                <span key={item.id}>item.title</span>
+                <li key={item.id}>
+                    <span>{item.title} - {item.state}</span>
+                </li>
             ));
         return (
             <div>
                 <h1>Main Page</h1>
                 <button onClick={this.fetchAssets}>get assets</button>
-                <div> {list} </div>
+                <ul> {list} </ul>
             </div>
         );
     }
