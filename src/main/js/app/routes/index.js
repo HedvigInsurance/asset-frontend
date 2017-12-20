@@ -1,6 +1,5 @@
-
-import MainPageRoute from './Main.jsx'
-import LoginPageRoute from './Login.jsx'
+import MainPageRoute from './MainPageRouter.jsx'
+import LoginPageRoute from './LoginPageRouter.jsx'
 import PrivateRoute from './PrivateRoute.jsx'
 
 export default {

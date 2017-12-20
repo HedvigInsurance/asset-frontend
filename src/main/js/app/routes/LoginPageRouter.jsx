@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginPage from '../containers/LoginPage/index.jsx';
+import LoginPage from '../containers/login-page/LoginPage.jsx';
 
 const LoginPageRouter = () => <LoginPage />;
 

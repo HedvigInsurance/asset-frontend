@@ -18,9 +18,10 @@ function checkAuthorization(dispatch) {
 
     return false;
 }
-/*eslint-disable*/
+
 export function checkAssetAuthorization({ dispatch, getState }) {
     // TODO remove next return
+    /*eslint-disable*/
     return true;
     const client = getState().client;
     if (client && client.token) return true;

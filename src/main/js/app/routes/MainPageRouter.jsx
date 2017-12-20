@@ -1,5 +1,5 @@
 import React from 'react';
-import MainPage from '../containers/MainPage/index.jsx';
+import MainPage from '../containers/main-page/MainPage.jsx';
 
 const MainPageRouter = () => <MainPage />;
 

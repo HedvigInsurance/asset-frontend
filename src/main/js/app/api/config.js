@@ -1,13 +1,13 @@
 export default {
-    baseUrl: 'http://localhost:8080/api/',
+    baseUrl: '/api/',
     asset: {
         get: {
             method: 'get',
-            url: 'api/assets'
+            url: 'assets'
         },
         update: {
             method: 'post',
-            url: 'api/assets'
+            url: 'assets'
         }
     },
     // TODO fix login url

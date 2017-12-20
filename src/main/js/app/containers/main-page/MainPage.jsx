@@ -15,7 +15,7 @@ class MainPage extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchAssets();
+        // this.fetchAssets();
     }
 
     render() {
