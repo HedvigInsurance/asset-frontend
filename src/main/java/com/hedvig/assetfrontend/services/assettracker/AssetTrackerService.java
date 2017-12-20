@@ -3,7 +3,6 @@ package com.hedvig.assetfrontend.services.assettracker;
 import com.hedvig.assetfrontend.constant.AssetState;
 import com.hedvig.assetfrontend.domain.Asset;
 import com.hedvig.assetfrontend.repository.AssetRepository;
-import org.axonframework.commandhandling.CommandBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
