@@ -119,7 +119,7 @@
                     </filesets>
                 </configuration>
             </plugin>
-        </plugins>
+       </plugins>
     </build>
 
 </project>

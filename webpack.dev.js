@@ -32,7 +32,7 @@ module.exports = {
         }
     },
     entry: {
-        main: './src/main/js/app/app'
+        main: './src/main/js/app/index'
     },
     output: {
         path: buildPath,
@@ -41,7 +41,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loaders: [
                     {
