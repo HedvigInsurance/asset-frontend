@@ -1,11 +1,7 @@
+import initialState from '../initialState';
 import { CLIENT_SET, CLIENT_UNSET } from '../constants/actionTypes';
 
-const initialSate = {
-    id: null,
-    token: null
-};
-
-const reducer = function clientReducer(state = initialSate, action) {
+const reducer = function clientReducer(state = initialState.client, action) {
     switch (action.type) {
         case CLIENT_SET:
             return {

@@ -35,11 +35,11 @@ public class DatabaseLoader {
 
     @Transactional
     public void loadData() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 15; i++) {
             val id = UUID.randomUUID().toString();
             val asset = new Asset(
                     id,
-                    "http://thecatapi.com/?id=60m",
+                    "http://78.media.tumblr.com/tumblr_ll313eVnI91qjahcpo1_1280.jpg",
                     "http://thecatapi.com/?id=3hn",
                     "Asset number " + i,
                     AssetState.PENDING,

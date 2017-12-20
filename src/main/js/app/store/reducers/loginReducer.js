@@ -11,7 +11,6 @@ export default function(state = initialState.login, action) {
             return {
                 requesting: true,
                 successful: false,
-                messages: [{ body: 'Logging in...', time: new Date() }],
                 errors: []
             };
 
@@ -31,7 +30,6 @@ export default function(state = initialState.login, action) {
                         time: new Date()
                     }
                 ]),
-                messages: [],
                 requesting: false,
                 successful: false
             };

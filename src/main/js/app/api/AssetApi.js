@@ -18,10 +18,14 @@ const get = async () => {
     });
 };
 
-const update = async () => {
+const update = async (id, state) => {
     return await axiosInstance.request({
-        url: config.asset.update.url,
-        method: config.asset.update.method
+        url: `${config.asset.update.url}/${id}`,
+        method: config.asset.update.method,
+        data: {
+            id,
+            AssetState: state,
+        }
     });
 };
 

@@ -11,25 +11,39 @@ import {
 export default function(state = initialState.assets, action) {
     switch (action.type) {
         case ASSET_UPDATING:
-            return state;
+            return {
+                ...state,
+                requesting: true,
+                successful: false,
+                errors: []
+            };
 
         case ASSET_UPDATE_SUCCESS:
-            return state;
+            return {
+                ...state,
+                requesting: false,
+                successful: true,
+                errors: []
+            };
 
         case ASSET_UPDATE_ERROR:
-            return state;
+            return {
+                ...state,
+                requesting: false,
+                successful: false,
+                errors: state.errors.concat([
+                    {
+                        body: action.error.toString(),
+                        time: new Date()
+                    }
+                ])
+            };
 
         case ASSET_REQUESTING:
             return {
                 ...state,
                 requesting: false,
                 successful: true,
-                messages: [
-                    {
-                        body: 'Fetching assets',
-                        time: new Date()
-                    }
-                ],
                 errors: []
             };
 
@@ -38,12 +52,6 @@ export default function(state = initialState.assets, action) {
                 list: action.assets.data,
                 requesting: false,
                 successful: true,
-                messages: [
-                    {
-                        body: 'Assets fetched',
-                        time: new Date()
-                    }
-                ],
                 errors: []
             };
 

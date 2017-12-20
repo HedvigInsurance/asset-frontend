@@ -12,9 +12,9 @@ import {
 
 function* assetUpdateFlow(action) {
     try {
-        const { client, asset } = action;
-        const createdWidget = yield call(api.update, client, asset);
-        yield put(assetUpdateSuccess(createdWidget));
+        const { assetId, assetState } = action;
+        const updatedWidget = yield call(api.update, assetId, assetState);
+        yield put(assetUpdateSuccess(updatedWidget));
     } catch (error) {
         yield put(assetUpdateError(error));
     }
