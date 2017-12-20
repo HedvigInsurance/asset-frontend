@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class AssetTrackerJob extends QuartzJobBean {
 
-    private AssetTracker tracker;
+    private AssetTrackerService service;
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
-        tracker.findPendingAssets();
+        service.loadPendingAssetsFromTracker();
     }
 
-    public void setTracker(AssetTracker tracker) {
-        this.tracker = tracker;
+    public void setService(AssetTrackerService service) {
+        this.service = service;
     }
 }

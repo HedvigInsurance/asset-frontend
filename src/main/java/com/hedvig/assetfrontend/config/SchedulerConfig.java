@@ -1,7 +1,7 @@
 package com.hedvig.assetfrontend.config;
 
 import com.hedvig.assetfrontend.services.assettracker.AssetTrackerJob;
-import com.hedvig.assetfrontend.services.assettracker.AssetTracker;
+import com.hedvig.assetfrontend.services.assettracker.AssetTrackerService;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.SimpleTrigger;
@@ -24,9 +24,9 @@ public class SchedulerConfig {
     private int interval;
 
     @Autowired
-    private AssetTracker tracker;
+    private AssetTrackerService service;
 
-    public static final String ASSET_TRACKER_VAR = "tracker";
+    public static final String ASSET_TRACKER_SERVICE_VAR = "service";
 
     @Bean("assetTrackerJob")
     public JobDetailFactoryBean jobDetail() {
@@ -35,7 +35,7 @@ public class SchedulerConfig {
         jobDetailFactory.setDurability(true);
 
         JobDataMap data = new JobDataMap();
-        data.put(ASSET_TRACKER_VAR, tracker);
+        data.put(ASSET_TRACKER_SERVICE_VAR, service);
         jobDetailFactory.setJobDataMap(data);
 
         return jobDetailFactory;

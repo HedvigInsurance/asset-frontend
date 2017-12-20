@@ -1,11 +1,14 @@
 package com.hedvig.assetfrontend.services.assettracker;
 
 import com.hedvig.assetfrontend.constant.AssetState;
+import com.hedvig.assetfrontend.domain.Asset;
+
+import java.util.List;
 
 public class RemoteAssetTracker implements AssetTracker {
 
     @Override
-    public void findPendingAssets() {
+    public List<Asset> findPendingAssets() {
         throw new RuntimeException("Not implemented yet!");
     }
 

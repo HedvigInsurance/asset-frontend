@@ -4,8 +4,6 @@ import com.hedvig.assetfrontend.constant.AssetState;
 import com.hedvig.assetfrontend.domain.Asset;
 import com.hedvig.assetfrontend.repository.AssetRepository;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.commandhandling.gateway.DefaultCommandGateway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +19,12 @@ public class AssetTrackerService {
     private static Logger logger = LoggerFactory.getLogger(AssetTrackerService.class);
 
     private final AssetRepository assetRepository;
-    private final CommandGateway commandGateway;
+    private final AssetTracker tracker;
 
     @Autowired
-    public AssetTrackerService(AssetRepository assetRepository, CommandBus commandBus) {
+    public AssetTrackerService(AssetRepository assetRepository, AssetTracker tracker) {
         this.assetRepository = assetRepository;
-        this.commandGateway = new DefaultCommandGateway(commandBus);
+        this.tracker = tracker;
     }
 
     public void loadPendingAssets(List<Asset> assets) {
@@ -34,6 +32,10 @@ public class AssetTrackerService {
             assetRepository.save(assets);
             logger.info("Pending assets added");
         }
+    }
+
+    public void loadPendingAssetsFromTracker() {
+        loadPendingAssets(tracker.findPendingAssets());
     }
 
     public Stream<Asset> findPendingAssets() {
@@ -53,6 +55,10 @@ public class AssetTrackerService {
     public void changeAssetState(String assetId, AssetState state) throws AssetNotFoundException {
         Asset asset = assetRepository.findOne(assetId);
         if (asset != null) {
+            if (!tracker.updateAssetState(assetId, state)) {
+                throw new AssetNotFoundException(String.format("asset with id %s not found", assetId));
+            }
+
             asset.setState(state);
             assetRepository.save(asset);
             logger.info(String.format("state for asset with id %s changed to %s", assetId, state.name()));
