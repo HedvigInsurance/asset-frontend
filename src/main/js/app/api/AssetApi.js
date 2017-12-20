@@ -24,7 +24,7 @@ const update = async (id, state) => {
         method: config.asset.update.method,
         data: {
             id,
-            AssetState: state,
+            state,
         }
     });
 };
