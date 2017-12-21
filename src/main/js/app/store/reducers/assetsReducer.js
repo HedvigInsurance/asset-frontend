@@ -20,7 +20,7 @@ export default function(state = initialState.assets, action) {
 
         case ASSET_UPDATE_SUCCESS:
             return {
-                ...state,
+                list: action.asset,
                 requesting: false,
                 successful: true,
                 errors: []

@@ -13,8 +13,15 @@ import {
 function* assetUpdateFlow(action) {
     try {
         const { assetId, assetState } = action;
-        const updatedWidget = yield call(api.update, assetId, assetState);
-        yield put(assetUpdateSuccess(updatedWidget));
+        const { data } = yield call(api.update, assetId, assetState);
+        const { assets: { list } } = yield select();
+        const updatedList = list.map(asset => {
+            if (asset.id === data.id) {
+                return {...asset, state: data.state};
+            }
+            return asset;
+        });
+        yield put(assetUpdateSuccess(updatedList));
     } catch (error) {
         yield put(assetUpdateError(error));
     }

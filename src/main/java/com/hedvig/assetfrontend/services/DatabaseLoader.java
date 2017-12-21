@@ -1,6 +1,6 @@
 package com.hedvig.assetfrontend.services;
 
-import com.hedvig.assetfrontend.domain.Login;
+import com.hedvig.assetfrontend.domain.User;
 import lombok.val;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ public class DatabaseLoader {
 
     @Transactional
     public void createUser() {
-        val login = new Login("victor@hedvig.com", passwordEncoder.encode("123"));
+        val login = new User("victor@hedvig.com", passwordEncoder.encode("123"));
         entityManager.persist(login);
     }
 }

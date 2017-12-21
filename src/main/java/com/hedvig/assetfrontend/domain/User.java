@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 @Entity
 @NoArgsConstructor
 @ToString(exclude = "password")
-public class Login {
+public class User {
     @Id
     @GeneratedValue
     private Long id;
@@ -35,7 +35,7 @@ public class Login {
     @Column(length = 60)
     private String password;
 
-    public Login(String email, String password) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
