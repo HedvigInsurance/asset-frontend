@@ -11,7 +11,7 @@ const extractCSS = new ExtractTextPlugin(`[name].css`);
 module.exports = {
     devtool: 'sourcemaps',
     entry: {
-        main: './src/main/js/app/app'
+        main: './src/main/js/app/index'
     },
     cache: true,
     output: {
@@ -21,7 +21,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 query: {
