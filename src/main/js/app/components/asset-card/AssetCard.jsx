@@ -17,7 +17,7 @@ export default class AssetCard extends React.Component {
         super(props);
         this.state = {
             disabled: false,
-        }
+        };
         this.dropdownHandler = this.dropdownHandler.bind(this);
     }
 
@@ -36,12 +36,10 @@ export default class AssetCard extends React.Component {
 
     render() {
         const { asset } = this.props;
-        const date = asset.registrationDate;
-        const assetDate = moment()
-            .year(date.year)
-            .month(date.monthValue)
-            .dayOfYear(date.dayOfYear)
-            .format('MMMM Do YYYY');
+        const assetDate = moment(
+            asset.registrationDate,
+            'YYYY-MM-DD HH:mm'
+        ).format('MMMM Do YYYY');
         return (
             <Card>
                 <Image src={asset.photoUrl} />
@@ -56,7 +54,7 @@ export default class AssetCard extends React.Component {
                         options={assetStates}
                         placeholder="Choose asset state"
                         selection
-                        style={{width: '100%'}}
+                        style={{ width: '100%'}}
                         value={asset.state}
                         disabled={this.state.disabled}
                     />
