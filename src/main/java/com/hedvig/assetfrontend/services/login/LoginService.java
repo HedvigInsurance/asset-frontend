@@ -1,6 +1,6 @@
 package com.hedvig.assetfrontend.services.login;
 
-import com.hedvig.assetfrontend.services.assettracker.DatabaseLoader;
+import com.hedvig.assetfrontend.services.DatabaseLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

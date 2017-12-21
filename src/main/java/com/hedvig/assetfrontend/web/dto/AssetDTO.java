@@ -1,5 +1,6 @@
 package com.hedvig.assetfrontend.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hedvig.assetfrontend.constant.AssetState;
 import com.hedvig.assetfrontend.domain.Asset;
 import lombok.Value;
@@ -31,6 +32,7 @@ public class AssetDTO {
     String userId;
 
     @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     LocalDate registrationDate;
 
     public static AssetDTO fromDomain(Asset asset) {
