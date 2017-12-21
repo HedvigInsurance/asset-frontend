@@ -26,8 +26,8 @@ export default function(state = initialState.login, action) {
             return {
                 errors: state.errors.concat([
                     {
-                        body: action.error.toString(),
-                        time: new Date()
+                        message: action.error.response.statusText,
+                        status: action.error.response.status
                     }
                 ]),
                 requesting: false,

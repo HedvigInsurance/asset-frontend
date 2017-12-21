@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 import api from '../../api/AssetApi';
 
 import { ASSET_UPDATING, ASSET_REQUESTING } from '../constants/actionTypes';
@@ -13,7 +13,10 @@ import {
 function* assetUpdateFlow(action) {
     try {
         const { assetId, assetState } = action;
-        const { data } = yield call(api.update, assetId, assetState);
+        // eslint-disable-next-line no-undef
+        const token = localStorage.getItem('token');
+        const authToken = token ? JSON.parse(token) : '';
+        const { data } = yield call(api.update, assetId, assetState, authToken);
         const { assets: { list } } = yield select();
         const updatedList = list.map(asset => {
             if (asset.id === data.id) {

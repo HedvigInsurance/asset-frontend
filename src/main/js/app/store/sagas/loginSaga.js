@@ -1,5 +1,5 @@
 import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects';
-import { history } from 'react-router';
+import { history } from '../../app';
 import api from '../../api/LoginApi';
 
 import {
@@ -19,17 +19,15 @@ function* logout() {
 }
 
 function* loginFlow(email, password) {
-    let token;
+    let request;
     try {
-        token = yield call(api.login, email, password);
-
+        request = yield call(api.login, email, password);
+        const token = request.data.token;
         yield put(setClient(token));
-
         yield put({ type: LOGIN_SUCCESS });
         // eslint-disable-next-line no-undef
         localStorage.setItem('token', JSON.stringify(token));
-
-        history.push('/');
+        history.push('/assets');
     } catch (error) {
         yield put({ type: LOGIN_ERROR, error });
     } finally {
@@ -38,16 +36,14 @@ function* loginFlow(email, password) {
         }
     }
 
-    return token;
+    return request;
 }
 
 function* loginWatcher() {
     while (true) {
         const { email, password } = yield take(LOGIN_REQUESTING);
         const task = yield fork(loginFlow, email, password);
-
         const action = yield take([CLIENT_UNSET, LOGIN_ERROR]);
-
         if (action.type === CLIENT_UNSET) yield cancel(task);
 
         yield call(logout);

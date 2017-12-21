@@ -1,14 +1,10 @@
 import { CLIENT_SET, CLIENT_UNSET } from '../constants/actionTypes';
 
-export function setClient(token) {
-    return {
-        type: CLIENT_SET,
-        token
-    };
-}
+export const setClient = token => ({
+    type: CLIENT_SET,
+    token
+});
 
-export function unsetClient() {
-    return {
-        type: CLIENT_UNSET
-    };
-}
+export const unsetClient = () => ({
+    type: CLIENT_UNSET
+});

@@ -33,8 +33,8 @@ export default function(state = initialState.assets, action) {
                 successful: false,
                 errors: state.errors.concat([
                     {
-                        body: action.error.toString(),
-                        time: new Date()
+                        message: action.error.response.message,
+                        status: action.error.response.status
                     }
                 ])
             };
@@ -60,13 +60,12 @@ export default function(state = initialState.assets, action) {
                 requesting: false,
                 successful: false,
                 messages: [],
-                errors:
-                    state.errors.concat[
-                        {
-                            body: action.error.toString(),
-                            time: new Date()
-                        }
-                    ]
+                errors: state.errors.concat([
+                    {
+                        message: action.error.response.statusText,
+                        status: action.error.response.status
+                    }
+                ])
             };
 
         default:

@@ -1,10 +1,12 @@
 /* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container } from 'semantic-ui-react';
+import { Container, Button } from 'semantic-ui-react';
 import { assetUpdate, assetRequest } from '../../store/actions/assetsActions';
 import { pollStart, pollStop } from '../../store/actions/pollActions';
+import { setClient, unsetClient } from '../../store/actions/clientActions';
 import AssetList from '../../components/asset-list/AssetList.jsx';
+import { checkAuthorization } from '../../lib/checkAuth';
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -12,38 +14,47 @@ class MainPage extends React.Component {
         this.fetchAssets = this.fetchAssets.bind(this);
         this.pollStart = this.pollStart.bind(this);
         this.pollStop = this.pollStop.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     pollStart() {
-        this.props.pollStart(null, 2000);
+        const { pollStart, client: { token } } = this.props;
+        pollStart(token, 2000);
     }
 
     pollStop() {
         this.props.pollStop();
     }
 
+    logout() {
+        this.props.unsetClient();
+    }
+
     fetchAssets() {
-        const { assetRequest } = this.props;
-        return assetRequest();
+        const { assetRequest, client: { token } } = this.props;
+        return assetRequest(token);
     }
 
     componentDidMount() {
+        checkAuthorization(null, this.props.setClient);
         this.fetchAssets();
     }
 
     componentWillUnmount() {
-        this.pollStop()
+        this.pollStop();
     }
 
     render() {
         return (
             <Container>
                 <h1>Assets List</h1>
-                {/*<button onClick={this.fetchAssets}>get assets</button>
-                <button onClick={this.pollStart}>poll</button>
-                <button onClick={this.pollStop}>poll stop</button>*/}
+                <Button onClick={this.fetchAssets}>get assets</Button>
+                <Button onClick={this.pollStart}>poll start</Button>
+                <Button onClick={this.pollStop}>poll stop</Button>
+                <Button onClick={this.logout}>logout</Button>
                 <AssetList
                     assetsList={this.props.assets.list}
+                    errors={this.props.assets.errors}
                     assetUpdate={this.props.assetUpdate}
                     updateStatus={this.props.assets.requesting}
                 />
@@ -52,15 +63,16 @@ class MainPage extends React.Component {
     }
 }
 
-const mapStateToProps = ({ assets }) => {
-    return {
-        assets: assets
-    };
-};
+const mapStateToProps = ({ assets, client }) => ({
+    assets,
+    client
+});
 
 export default connect(mapStateToProps, {
     assetUpdate,
     assetRequest,
     pollStart,
-    pollStop
+    pollStop,
+    setClient,
+    unsetClient
 })(MainPage);
