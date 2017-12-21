@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 
-// import PrivateRoute from './routes/PrivateRoute';
 import Routes from './routes';
 import Store from './store';
 
@@ -21,7 +20,7 @@ export default class App extends React.Component {
                     <Switch>
                         <Route path="/login" component={Routes.LoginPageRoute} />
                         <PrivateRoute path="/assets" store={store} component={Routes.MainPageRoute} />
-                        <Route component={Routes.LoginPageRoute}/>
+                        <Route component={Routes.MainPageRoute}/>
                     </Switch>
                 </Router>
             </Provider>

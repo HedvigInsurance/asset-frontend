@@ -14,3 +14,6 @@ export const ASSET_REQUEST_ERROR = 'ASSET_REQUEST_ERROR';
 
 export const CLIENT_SET = 'CLIENT_SET';
 export const CLIENT_UNSET = 'CLIENT_UNSET';
+
+export const POLL_START = 'POLL_START';
+export const POLL_STOP = 'POLL_STOP';

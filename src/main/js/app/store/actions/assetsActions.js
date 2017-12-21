@@ -7,11 +7,11 @@ import {
     ASSET_REQUEST_ERROR
 } from '../constants/actionTypes';
 
-export const assetUpdate = function assetUpdate(client, asset) {
+export const assetUpdate = function assetUpdate(assetId, assetState) {
     return {
         type: ASSET_UPDATING,
-        client,
-        asset
+        assetId,
+        assetState,
     };
 };
 

@@ -24,11 +24,11 @@ public class LocalAssetTracker implements AssetTracker {
         if (!generated) {
             logger.info("fetch pending assets");
             generated = true;
-            return IntStream.range(0, 100).mapToObj(i -> {
+            return IntStream.range(0, 15).mapToObj(i -> {
                 val id = UUID.randomUUID().toString();
                 return new Asset(
                         id,
-                        "http://thecatapi.com/?id=60m",
+                        "http://78.media.tumblr.com/tumblr_ll313eVnI91qjahcpo1_1280.jpg",
                         "http://thecatapi.com/?id=3hn",
                         "Asset number " + i,
                         AssetState.PENDING,

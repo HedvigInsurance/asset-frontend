@@ -1,4 +1,4 @@
-import { setClient } from '../store/actions';
+import { setClient } from '../store/actions/clientActions';
 
 function checkAuthorization(dispatch) {
     // eslint-disable-next-line no-undef
