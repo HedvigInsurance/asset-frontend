@@ -1,13 +1,12 @@
 package com.hedvig.assetfrontend.config;
 
 import com.hedvig.assetfrontend.services.assettracker.AssetTrackerJob;
-import com.hedvig.assetfrontend.services.assettracker.AssetTrackerService;
+import com.hedvig.assetfrontend.services.assettracker.AssetTrackerServiceImpl;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,16 +19,20 @@ import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 @Configuration
 public class SchedulerConfig {
 
+    public static final String ASSET_TRACKER_SERVICE_VAR = "service";
+
     @Value("${job.interval}")
     private int interval;
 
+    private AssetTrackerServiceImpl service;
+
     @Autowired
-    private AssetTrackerService service;
+    public SchedulerConfig(AssetTrackerServiceImpl service) {
+        this.service = service;
+    }
 
-    public static final String ASSET_TRACKER_SERVICE_VAR = "service";
-
-    @Bean("assetTrackerJob")
-    public JobDetailFactoryBean jobDetail() {
+    @Bean
+    public JobDetailFactoryBean assetTrackerJob() {
         JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
         jobDetailFactory.setJobClass(AssetTrackerJob.class);
         jobDetailFactory.setDurability(true);
@@ -41,22 +44,21 @@ public class SchedulerConfig {
         return jobDetailFactory;
     }
 
-    @Bean("assetTrackerTrigger")
-    public SimpleTriggerFactoryBean trigger(@Qualifier("assetTrackerJob") JobDetail job) {
+    @Bean
+    public SimpleTriggerFactoryBean assetTrackerTrigger(JobDetail assetTrackerJob) {
         SimpleTriggerFactoryBean trigger = new SimpleTriggerFactoryBean();
-        trigger.setJobDetail(job);
+        trigger.setJobDetail(assetTrackerJob);
         trigger.setRepeatInterval(interval);
         trigger.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
         return trigger;
     }
 
     @Bean
-    public SchedulerFactoryBean scheduler(@Qualifier("assetTrackerTrigger") Trigger trigger,
-                                          @Qualifier("assetTrackerJob") JobDetail job) {
+    public SchedulerFactoryBean scheduler(Trigger assetTrackerTrigger, JobDetail assetTrackerJob) {
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
         schedulerFactory.setJobFactory(new SpringBeanJobFactory());
-        schedulerFactory.setJobDetails(job);
-        schedulerFactory.setTriggers(trigger);
+        schedulerFactory.setJobDetails(assetTrackerJob);
+        schedulerFactory.setTriggers(assetTrackerTrigger);
         return schedulerFactory;
     }
 

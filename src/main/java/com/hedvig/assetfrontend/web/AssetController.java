@@ -1,14 +1,13 @@
 package com.hedvig.assetfrontend.web;
 
 import com.hedvig.assetfrontend.services.assettracker.AssetNotFoundException;
-import com.hedvig.assetfrontend.services.assettracker.AssetTrackerService;
+import com.hedvig.assetfrontend.services.assettracker.AssetTrackerServiceImpl;
 import com.hedvig.assetfrontend.web.dto.AssetDTO;
 import com.hedvig.assetfrontend.web.dto.AssetStateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,32 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/assets")
 public class AssetController {
 
-    private final AssetTrackerService assetTrackerService;
+    private final AssetTrackerServiceImpl assetTrackerService;
 
     @Autowired
-    public AssetController(AssetTrackerService assetTrackerService) {
+    public AssetController(AssetTrackerServiceImpl assetTrackerService) {
         this.assetTrackerService = assetTrackerService;
     }
 
     @GetMapping
-    @Transactional
     public List<AssetDTO> findAll() {
-        List<AssetDTO> list = assetTrackerService.findPendingAssets()
-                .map(AssetDTO::fromDomain)
-                .collect(Collectors.toList());
-
-        return list;
+        return assetTrackerService.findAll();
     }
 
     @GetMapping("/{assetId}")
     public AssetDTO find(@PathVariable("assetId") String assetId) throws AssetNotFoundException {
-        return AssetDTO.fromDomain(assetTrackerService.find(assetId));
+        return assetTrackerService.find(assetId);
     }
 
     @PostMapping(value = "/{assetId}", consumes = MediaType.APPLICATION_JSON_VALUE)
