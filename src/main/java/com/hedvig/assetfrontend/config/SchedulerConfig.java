@@ -1,7 +1,7 @@
 package com.hedvig.assetfrontend.config;
 
 import com.hedvig.assetfrontend.services.assettracker.AssetTrackerJob;
-import com.hedvig.assetfrontend.services.assettracker.AssetTrackerServiceImpl;
+import com.hedvig.assetfrontend.services.assettracker.AssetTrackerService;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.SimpleTrigger;
@@ -24,10 +24,10 @@ public class SchedulerConfig {
     @Value("${job.interval}")
     private int interval;
 
-    private AssetTrackerServiceImpl service;
+    private AssetTrackerService service;
 
     @Autowired
-    public SchedulerConfig(AssetTrackerServiceImpl service) {
+    public SchedulerConfig(AssetTrackerService service) {
         this.service = service;
     }
 

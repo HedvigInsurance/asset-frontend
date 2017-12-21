@@ -29,16 +29,12 @@ public class AssetTrackerServiceImpl implements AssetTrackerService {
 
     @Transactional
     @Override
-    public void loadPendingAssets(List<Asset> assets) {
+    public void loadPendingAssetsFromTracker() {
+        List<Asset> assets = tracker.findPendingAssets();
         if (assets.size() > 0) {
             assetRepository.save(assets);
             logger.info("Pending assets added");
         }
-    }
-
-    @Override
-    public void loadPendingAssetsFromTracker() {
-        loadPendingAssets(tracker.findPendingAssets());
     }
 
     @Transactional

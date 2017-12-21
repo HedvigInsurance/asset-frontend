@@ -1,7 +1,7 @@
 package com.hedvig.assetfrontend.web;
 
 import com.hedvig.assetfrontend.services.assettracker.AssetNotFoundException;
-import com.hedvig.assetfrontend.services.assettracker.AssetTrackerServiceImpl;
+import com.hedvig.assetfrontend.services.assettracker.AssetTrackerService;
 import com.hedvig.assetfrontend.web.dto.AssetDTO;
 import com.hedvig.assetfrontend.web.dto.AssetStateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,10 @@ import java.util.List;
 @RequestMapping("/api/assets")
 public class AssetController {
 
-    private final AssetTrackerServiceImpl assetTrackerService;
+    private final AssetTrackerService assetTrackerService;
 
     @Autowired
-    public AssetController(AssetTrackerServiceImpl assetTrackerService) {
+    public AssetController(AssetTrackerService assetTrackerService) {
         this.assetTrackerService = assetTrackerService;
     }
 
