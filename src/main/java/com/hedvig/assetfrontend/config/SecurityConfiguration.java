@@ -53,9 +53,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         if (jwtEnabled) {
             http.authorizeRequests()
-                    .antMatchers("/login").permitAll()
-                    .antMatchers("/logout").permitAll()
-                    .anyRequest().authenticated();
+                    .antMatchers("/api/login").permitAll()
+                    .antMatchers("/api/**").authenticated();
         }
     }
 }
