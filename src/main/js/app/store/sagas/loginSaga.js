@@ -11,7 +11,7 @@ import {
 
 import { setClient, unsetClient } from '../actions/clientActions';
 
-function* logout() {
+export function* logout() {
     yield put(unsetClient());
     // eslint-disable-next-line no-undef
     localStorage.removeItem('token');

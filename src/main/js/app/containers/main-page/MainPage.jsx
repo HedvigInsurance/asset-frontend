@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Button } from 'semantic-ui-react';
-import { assetUpdate, assetRequest } from '../../store/actions/assetsActions';
-import { pollStart, pollStop } from '../../store/actions/pollActions';
-import { setClient, unsetClient } from '../../store/actions/clientActions';
+import actions from '../../store/actions';
 import AssetList from '../../components/asset-list/AssetList.jsx';
 import { checkAuthorization } from '../../lib/checkAuth';
 
@@ -63,16 +61,14 @@ class MainPage extends React.Component {
     }
 }
 
-const mapStateToProps = ({ assets, client }) => ({
+const mapStateToProps = ({ assets, client, polling }) => ({
     assets,
-    client
+    client,
+    polling
 });
 
 export default connect(mapStateToProps, {
-    assetUpdate,
-    assetRequest,
-    pollStart,
-    pollStop,
-    setClient,
-    unsetClient
+    ...actions.assetsActions,
+    ...actions.clientActions,
+    ...actions.pollActions
 })(MainPage);
