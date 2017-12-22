@@ -11,10 +11,14 @@ const axiosInstance = axios.create({
     }
 });
 
-const login = async () => {
+const login = async (email, password) => {
     return await axiosInstance.request({
         method: config.login.login.method,
-        url: config.login.login.url
+        url: config.login.login.url,
+        data: {
+            email,
+            password
+        }
     });
 };
 

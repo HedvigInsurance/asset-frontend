@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import reducers from './reducers';
+import { reducer as reduxFormReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
-    ...reducers
+    ...reducers,
+    form: reduxFormReducer,
 });
 
 const configureStore = () => {

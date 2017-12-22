@@ -16,7 +16,7 @@ export default class AssetCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            disabled: false,
+            disabled: false
         };
         this.dropdownHandler = this.dropdownHandler.bind(this);
     }
@@ -29,8 +29,8 @@ export default class AssetCard extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.updateStatus !== this.props.updateStatus) {
             this.setState({
-                disabled: false,
-            })
+                disabled: false
+            });
         }
     }
 
@@ -54,7 +54,7 @@ export default class AssetCard extends React.Component {
                         options={assetStates}
                         placeholder="Choose asset state"
                         selection
-                        style={{ width: '100%'}}
+                        style={{ width: '100%' }}
                         value={asset.state}
                         disabled={this.state.disabled}
                     />

@@ -1,11 +1,7 @@
 import { LOGIN_REQUESTING } from '../constants/actionTypes';
 
-const loginRequest = function loginRequest({ email, password }) {
-    return {
-        type: LOGIN_REQUESTING,
-        email,
-        password
-    };
-};
-
-export default loginRequest;
+export const loginRequest = ({ email, password }) => ({
+    type: LOGIN_REQUESTING,
+    email,
+    password
+});

@@ -9,4 +9,9 @@ target/
 *.iml
 *.ipr
 
+### VS Code ###
 .history
+.classpath
+.project
+package-lock.json
+.settings

@@ -1,9 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { loginRequest } from '../../store/actions/loginActions';
+import LoginForm from '../../components/login-form/LoginForm.jsx';
 
-export default class LoginPage extends React.Component {
+/* eslint-disable react/prop-types */
+class LoginPage extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <h1>Login Page</h1>
+            <main className="login-container">
+                <h1>Login</h1>
+                <LoginForm
+                    onSubmit={this.props.loginRequest}
+                    errors={this.props.login.errors}
+                />
+            </main>
         );
     }
 }
+
+const mapStateToProps = ({ login }) => ({
+    login
+});
+
+export default connect(mapStateToProps, {
+    loginRequest
+})(LoginPage);
