@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Button } from 'semantic-ui-react';
@@ -8,6 +7,7 @@ import { setClient, unsetClient } from '../../store/actions/clientActions';
 import AssetList from '../../components/asset-list/AssetList.jsx';
 import { checkAuthorization } from '../../lib/checkAuth';
 
+/* eslint-disable react/prop-types */
 class MainPage extends React.Component {
     constructor(props) {
         super(props);

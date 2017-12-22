@@ -15,7 +15,7 @@ const AssetList = ({ assetsList, errors, assetUpdate, updateStatus }) => {
             ) : (
                 <Card.Group itemsPerRow={4}>
                     {assetsList &&
-                        assetsList.length &&
+                        !!assetsList.length &&
                         assetsList.map(asset => (
                             <AssetCard
                                 key={asset.id}
