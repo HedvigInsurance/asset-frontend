@@ -27,3 +27,7 @@ jwt:
   expiration: 864000000
   secret: fGWPyfB8wBGoXB5B07xoa6KKfXobo79p
   header: Authorization
+
+amqp:
+  hostname: localhost
+  exchange: hedvig-assets
