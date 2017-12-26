@@ -47,8 +47,11 @@ class MainPage extends React.Component {
             <Container>
                 <h1>Assets List</h1>
                 <Button onClick={this.fetchAssets}>get assets</Button>
-                <Button onClick={this.pollStart}>poll start</Button>
-                <Button onClick={this.pollStop}>poll stop</Button>
+                {this.props.poll.polling ? (
+                    <Button onClick={this.pollStop}>poll stop</Button>
+                ) : (
+                    <Button onClick={this.pollStart}>poll start</Button>
+                )}
                 <Button onClick={this.logout}>logout</Button>
                 <AssetList
                     assetsList={this.props.assets.list}
@@ -61,10 +64,10 @@ class MainPage extends React.Component {
     }
 }
 
-const mapStateToProps = ({ assets, client, polling }) => ({
+const mapStateToProps = ({ assets, client, poll }) => ({
     assets,
     client,
-    polling
+    poll
 });
 
 export default connect(mapStateToProps, {

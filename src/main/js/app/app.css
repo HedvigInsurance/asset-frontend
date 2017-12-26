@@ -1,8 +1,5 @@
-.pink {
-    background-color: deeppink;
-    color: lightpink;
-    font-weight: bold;
-    padding: 50px;
+html {
+    font-size: 13px;
 }
 
 .assets-list {
@@ -19,4 +16,37 @@
 .login-form {
     display: inline-block;
     min-width: 600px;
+}
+
+.ui.selection.dropdown.dropdown--short-text {
+    min-width: 100%;
+}
+
+.dropdown--short-text>.text {
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filter {
+    margin-bottom: 30px;
+}
+
+.filter__label {
+    margin-right: 10px;
+}
+
+.filter__message {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }

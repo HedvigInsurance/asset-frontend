@@ -2,17 +2,19 @@ export default {
     login: {
         requesting: false,
         successful: false,
-        errors: [],
+        errors: []
     },
     assets: {
         list: [],
         requesting: false,
         successful: false,
-        errors: [],
+        errors: []
     },
     client: {
         id: null,
-        token: null,
+        token: null
     },
-    poll: false,
-}
+    poll: {
+        polling: false
+    }
+};
