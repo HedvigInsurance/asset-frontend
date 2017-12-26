@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AmqpConfig {
 
-    @Value("${amqp.hostname:localhost}")
+    @Value("${amqp.hostname}")
     private String hostname;
 
     @Bean

@@ -30,4 +30,4 @@ jwt:
 
 amqp:
   hostname: localhost
-  exchange: hedvig-assets
+  exchange: hedvig-assets-state

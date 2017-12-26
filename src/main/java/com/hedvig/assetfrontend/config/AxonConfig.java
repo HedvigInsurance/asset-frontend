@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AxonConfig {
 
-    @Value("${amqp.exchange:hedvig-assets}")
+    @Value("${amqp.exchange}")
     private String exchange;
 
     @Bean
