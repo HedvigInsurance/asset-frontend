@@ -43,8 +43,8 @@ public class LocalAssetTracker implements AssetTracker {
     }
 
     @Override
-    public boolean updateAssetState(String id, AssetState state) {
-        return true;
+    public void updateAssetState(String assetId, AssetState state) throws AssetTrackerException {
+
     }
 
 }

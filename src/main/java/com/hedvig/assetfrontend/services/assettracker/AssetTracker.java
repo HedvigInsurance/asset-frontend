@@ -8,6 +8,6 @@ import java.util.List;
 public interface AssetTracker {
 
     List<Asset> findPendingAssets();
-    boolean updateAssetState(String id, AssetState state);
+    void updateAssetState(String assetId, AssetState state) throws AssetTrackerException;
 
 }
