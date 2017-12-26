@@ -12,13 +12,13 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
 @Aggregate
 @NoArgsConstructor
-public class AssetStateAggregate {
+public class AssetStateChange {
 
     @AggregateIdentifier
     private String id;
 
     @CommandHandler
-    public AssetStateAggregate(AssetStateChangeCommand command) {
+    public AssetStateChange(AssetStateChangeCommand command) {
         apply(new AssetStateChangeEvent(command.getId()));
     }
 
