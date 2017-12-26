@@ -1,15 +1,7 @@
 import React from 'react';
 import { Card, Image, Dropdown } from 'semantic-ui-react';
 import moment from 'moment';
-
-const assetStates = [
-    { key: 0, text: 'CREATED', value: 'CREATED' },
-    { key: 1, text: 'PENDING', value: 'PENDING' },
-    { key: 2, text: 'WAITING_FOR_PAYMENT', value: 'WAITING_FOR_PAYMENT' },
-    { key: 3, text: 'NOT_COVERED', value: 'NOT_COVERED' },
-    { key: 4, text: 'COVERED', value: 'COVERED' },
-    { key: 5, text: 'DELETED', value: 'DELETED' }
-];
+import { assetStates } from '../../lib/selectOptios';
 
 /* eslint-disable react/prop-types */
 export default class AssetCard extends React.Component {
@@ -50,6 +42,7 @@ export default class AssetCard extends React.Component {
                 </Card.Content>
                 <Card.Content extra>
                     <Dropdown
+                        className="dropdown--short-text"
                         onChange={this.dropdownHandler}
                         options={assetStates}
                         placeholder="Choose asset state"

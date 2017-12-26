@@ -2,33 +2,90 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Dimmer, Loader, Segment, Message } from 'semantic-ui-react';
 import AssetCard from '../asset-card/AssetCard.jsx';
+import Pagination from '../pagination/Pagination.jsx';
+import Fliter from '../list-filter/AssetsListFilter.jsx';
+import { filterList } from '../../lib/filters';
 
-// eslint-disable-next-line react/prop-types
-const AssetList = ({ assetsList, errors, assetUpdate, updateStatus }) => {
-    return (
-        <Segment className="assets-list">
-            <Dimmer active={assetsList && !assetsList.length} inverted>
-                <Loader size="large">Loading</Loader>
-            </Dimmer>
-            {errors && errors.length ? (
-                <AssetListErrors errors={errors} />
-            ) : (
-                <Card.Group itemsPerRow={4}>
-                    {assetsList &&
-                        !!assetsList.length &&
-                        assetsList.map(asset => (
-                            <AssetCard
-                                key={asset.id}
-                                asset={asset}
-                                assetUpdate={assetUpdate}
-                                updateStatus={updateStatus}
-                            />
-                        ))}
-                </Card.Group>
-            )}
-        </Segment>
-    );
-};
+/* eslint-disable react/prop-types*/
+class AssetList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeList: [],
+            filteredList: [],
+            activeFilter: 'ALL'
+        };
+        this.onChangePage = this.onChangePage.bind(this);
+        this.filterChangeHandler = this.filterChangeHandler.bind(this);
+        this.assetUpdateHandler = this.assetUpdateHandler.bind(this);
+    }
+
+    onChangePage(activeList) {
+        this.setState({ activeList });
+    }
+
+    assetUpdateHandler(id, value) {
+        this.props.assetUpdate(id, value);
+        this.filterChangeHandler(null, { value: this.state.activeFilter });
+    }
+
+    filterChangeHandler(e, { value }) {
+        this.setState(
+            {
+                activeFilter: value
+            },
+            () => {
+                const filteredList = filterList(
+                    this.state.activeFilter,
+                    this.props.assetsList
+                );
+                this.setState({
+                    filteredList
+                });
+            }
+        );
+    }
+
+    render() {
+        const { assetsList, errors, updateStatus } = this.props;
+        const { activeList, filteredList, activeFilter } = this.state;
+        const items = activeFilter === 'ALL' ? assetsList : filteredList;
+        return (
+            <Segment className="assets-list">
+                <Dimmer active={assetsList && !assetsList.length} inverted>
+                    <Loader size="large">Loading</Loader>
+                </Dimmer>
+                {errors && errors.length ? (
+                    <AssetListErrors errors={errors} />
+                ) : (
+                    <div>
+                        <Fliter
+                            list={assetsList}
+                            activeFilter={this.state.activeFilter}
+                            filterChange={this.filterChangeHandler}
+                        />
+                        <Card.Group itemsPerRow={5}>
+                            {assetsList &&
+                                !!activeList.length ?
+                                activeList.map(asset => (
+                                    <AssetCard
+                                        key={asset.id}
+                                        asset={asset}
+                                        assetUpdate={this.assetUpdateHandler}
+                                        updateStatus={updateStatus}
+                                    />
+                                )): <p className="filter__message">No items by this filter. Select other.</p>}
+                        </Card.Group>
+                        <Pagination
+                            items={items}
+                            onChangePage={this.onChangePage}
+                        />
+                    </div>
+                )}
+            </Segment>
+        );
+    }
+}
 
 const AssetListErrors = errors => {
     return errors.errors.map((err, id) => (
