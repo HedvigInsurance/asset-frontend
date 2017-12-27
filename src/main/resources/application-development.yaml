@@ -5,3 +5,6 @@ security:
 
 tracker:
   stub: true
+
+jwt:
+  enabled: true

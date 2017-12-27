@@ -1,6 +1,7 @@
 package com.hedvig.assetfrontend.web;
 
 import com.hedvig.assetfrontend.services.assettracker.AssetNotFoundException;
+import com.hedvig.assetfrontend.services.assettracker.AssetTrackerException;
 import com.hedvig.assetfrontend.services.assettracker.AssetTrackerService;
 import com.hedvig.assetfrontend.web.dto.AssetDTO;
 import com.hedvig.assetfrontend.web.dto.AssetStateDTO;
@@ -41,7 +42,8 @@ public class AssetController {
 
     @PostMapping(value = "/{assetId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AssetStateDTO> update(@PathVariable("assetId") String assetId,
-                                                @RequestBody @Valid AssetStateDTO state) throws AssetNotFoundException {
+                                                @RequestBody @Valid AssetStateDTO state)
+            throws AssetNotFoundException, AssetTrackerException {
 
         assetTrackerService.changeAssetState(assetId, state.getState());
         return new ResponseEntity<>(new AssetStateDTO(assetId, state.getState()), HttpStatus.OK);

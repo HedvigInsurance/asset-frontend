@@ -1,13 +1,13 @@
 package com.hedvig.assetfrontend.services.assettracker;
 
-import com.hedvig.assetfrontend.constant.AssetState;
 import com.hedvig.assetfrontend.domain.Asset;
+import com.hedvig.common.constant.AssetState;
 
 import java.util.List;
 
 public interface AssetTracker {
 
     List<Asset> findPendingAssets();
-    boolean updateAssetState(String id, AssetState state);
+    void updateAssetState(String assetId, AssetState state) throws AssetTrackerException;
 
 }

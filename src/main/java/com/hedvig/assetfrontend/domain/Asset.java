@@ -1,6 +1,6 @@
 package com.hedvig.assetfrontend.domain;
 
-import com.hedvig.assetfrontend.constant.AssetState;
+import com.hedvig.common.constant.AssetState;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +36,6 @@ public class Asset {
     @NotNull
     private Boolean includedInBasePackage;
 
-    @NotNull
     private String userId;
 
     @NotNull

@@ -17,9 +17,12 @@ spring:
     active: development
 
 job:
-  interval: 10000
+  interval: 60000
 
 tracker:
+  baseUrl: http://localhost:4082/frontend
+  urls:
+    assets: /assets
   stub: false
 
 jwt:
@@ -27,3 +30,7 @@ jwt:
   expiration: 864000000
   secret: fGWPyfB8wBGoXB5B07xoa6KKfXobo79p
   header: Authorization
+
+amqp:
+  hostname: localhost
+  exchange: hedvig-assets-state

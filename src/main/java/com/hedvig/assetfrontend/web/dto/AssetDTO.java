@@ -1,8 +1,8 @@
 package com.hedvig.assetfrontend.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hedvig.assetfrontend.constant.AssetState;
 import com.hedvig.assetfrontend.domain.Asset;
+import com.hedvig.common.constant.AssetState;
 import lombok.Value;
 
 import javax.validation.constraints.NotNull;
@@ -45,5 +45,18 @@ public class AssetDTO {
                 asset.getIncludedInBasePackage(),
                 asset.getUserId(),
                 asset.getRegistrationDate());
+    }
+
+    public static Asset toDomain(AssetDTO dto) {
+        return new Asset(
+                dto.id,
+                dto.photoUrl,
+                dto.receiptUrl,
+                dto.title,
+                dto.state,
+                dto.includedInBasePackage,
+                dto.userId,
+                dto.registrationDate
+        );
     }
 }

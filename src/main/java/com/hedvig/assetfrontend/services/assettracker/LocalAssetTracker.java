@@ -1,7 +1,7 @@
 package com.hedvig.assetfrontend.services.assettracker;
 
-import com.hedvig.assetfrontend.constant.AssetState;
 import com.hedvig.assetfrontend.domain.Asset;
+import com.hedvig.common.constant.AssetState;
 import lombok.val;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,8 +43,8 @@ public class LocalAssetTracker implements AssetTracker {
     }
 
     @Override
-    public boolean updateAssetState(String id, AssetState state) {
-        return true;
+    public void updateAssetState(String assetId, AssetState state) throws AssetTrackerException {
+
     }
 
 }
