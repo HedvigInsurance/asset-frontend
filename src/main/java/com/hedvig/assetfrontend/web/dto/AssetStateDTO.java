@@ -1,6 +1,6 @@
 package com.hedvig.assetfrontend.web.dto;
 
-import com.hedvig.assetfrontend.constant.AssetState;
+import com.hedvig.common.constant.AssetState;
 import lombok.Value;
 
 import javax.validation.constraints.NotNull;

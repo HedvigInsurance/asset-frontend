@@ -4,7 +4,7 @@ security:
     authorize-mode: NONE
 
 tracker:
-  stub: false
+  stub: true
 
 jwt:
-  enabled: false
+  enabled: true

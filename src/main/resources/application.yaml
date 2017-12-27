@@ -17,9 +17,12 @@ spring:
     active: development
 
 job:
-  interval: 10000
+  interval: 60000
 
 tracker:
+  baseUrl: http://localhost:4082/frontend
+  urls:
+    assets: /assets
   stub: false
 
 jwt:
