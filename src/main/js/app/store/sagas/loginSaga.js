@@ -1,6 +1,6 @@
 import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects';
-import { history } from '../../app';
-import api from '../../api/LoginApi';
+import { history } from 'app/app';
+import api from 'app/api/LoginApi';
 
 import {
     LOGIN_REQUESTING,

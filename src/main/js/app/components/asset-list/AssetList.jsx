@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Dimmer, Loader, Segment, Message } from 'semantic-ui-react';
-import AssetCard from '../asset-card/AssetCard.jsx';
-import Pagination from '../pagination/Pagination.jsx';
-import Fliter from '../list-filter/AssetsListFilter.jsx';
-import { filterList } from '../../lib/filters';
+import AssetCard from '../asset-card/AssetCard';
+import Pagination from '../pagination/Pagination';
+import Fliter from '../list-filter/AssetsListFilter';
+import { filterList } from 'app/lib/filters';
 
 /* eslint-disable react/prop-types*/
 class AssetList extends React.Component {

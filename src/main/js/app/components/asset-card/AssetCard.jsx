@@ -1,21 +1,26 @@
 import React from 'react';
-import { Card, Image, Dropdown } from 'semantic-ui-react';
+import { Card, Image, Dropdown, Button } from 'semantic-ui-react';
 import moment from 'moment';
-import { assetStates } from '../../lib/selectOptions';
+import { assetStates } from 'app/lib/selectOptions';
 
 /* eslint-disable react/prop-types */
 export default class AssetCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            disabled: false
+            disabled: false,
+            dropdownValue: ''
         };
         this.dropdownHandler = this.dropdownHandler.bind(this);
+        this.saveClickHandler = this.saveClickHandler.bind(this);
     }
 
     dropdownHandler(e, { value }) {
+        this.setState(() => ({ dropdownValue: value }));
+    }
+    saveClickHandler() {
         this.setState(() => ({ disabled: true }));
-        this.props.assetUpdate(this.props.asset.id, value);
+        this.props.assetUpdate(this.props.asset.id, this.state.dropdownValue);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,16 +46,21 @@ export default class AssetCard extends React.Component {
                     <Card.Description>{asset.userId}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                    <Dropdown
-                        className="dropdown--short-text"
-                        onChange={this.dropdownHandler}
-                        options={assetStates}
-                        placeholder="Choose asset state"
-                        selection
-                        style={{ width: '100%' }}
-                        value={asset.state}
-                        disabled={this.state.disabled}
-                    />
+                    <div>
+                        <Dropdown
+                            className="dropdown--short-text"
+                            onChange={this.dropdownHandler}
+                            options={assetStates}
+                            placeholder="Choose asset state"
+                            selection
+                            style={{ width: '100%' }}
+                            value={this.state.dropdownValue || asset.state}
+                            disabled={this.state.disabled}
+                        />
+                        <Button primary fluid onClick={this.saveClickHandler}>
+                            Save
+                        </Button>
+                    </div>
                 </Card.Content>
             </Card>
         );

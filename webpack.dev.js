@@ -81,6 +81,16 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        modules: [path.resolve(__dirname, "src/main/js"), "node_modules"],
+        extensions: ['.js', '.jsx', '.css'],
+        alias: {
+            app: path.resolve(__dirname, "src/main/js/app"),
+            components: path.resolve(__dirname, "src/main/js/app/components"),
+            containers: path.resolve(__dirname, "src/main/js/app/containers"),
+            constants$: path.resolve(__dirname, "src/main/js/app/store/constants/actionTypes.js"),
+        }
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/main/js/index.html',

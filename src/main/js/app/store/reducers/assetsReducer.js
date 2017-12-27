@@ -6,7 +6,7 @@ import {
     ASSET_REQUESTING,
     ASSET_REQUEST_SUCCESS,
     ASSET_REQUEST_ERROR
-} from '../constants/actionTypes';
+} from 'constants';
 
 export default function(state = initialState.assets, action) {
     switch (action.type) {

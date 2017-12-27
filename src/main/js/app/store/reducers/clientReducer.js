@@ -1,5 +1,5 @@
 import initialState from '../initialState';
-import { CLIENT_SET, CLIENT_UNSET } from '../constants/actionTypes';
+import { CLIENT_SET, CLIENT_UNSET } from 'constants';
 
 export default function clientReducer(state = initialState.client, action) {
     switch (action.type) {

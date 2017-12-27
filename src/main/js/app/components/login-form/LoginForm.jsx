@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Button, Segment, Message } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
-import FormField from '../form-field/FormField.jsx';
-import { required, email } from '../../lib/validation';
+import FormField from '../form-field/FormField';
+import { required, email } from 'app/lib/validation';
 
 /* eslint-disable react/prop-types */
 class LoginForm extends React.Component {

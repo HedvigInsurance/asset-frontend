@@ -1,11 +1,11 @@
+import { take, put, call, race } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import api from 'app/api/AssetApi';
+import { POLL_START, POLL_STOP } from 'constants';
 import {
     assetRequestError,
     assetRequestSuccess
 } from '../actions/assetsActions';
-import { take, put, call, race } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
-import api from '../../api/AssetApi';
-import { POLL_START, POLL_STOP } from '../constants/actionTypes';
 
 function* pollAssetsSaga({ client, duration }) {
     while (true) {

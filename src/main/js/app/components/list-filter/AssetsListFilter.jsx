@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
-import { assetStates } from '../../lib/selectOptions';
+import { assetStates } from 'app/lib/selectOptions';
 
 /* eslint-disable react/prop-types */
 export default class Fliter extends React.Component {
