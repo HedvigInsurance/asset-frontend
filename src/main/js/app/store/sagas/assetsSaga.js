@@ -1,6 +1,6 @@
 import { call, put, takeLatest, select, take } from 'redux-saga/effects';
-import api from '../../api/AssetApi';
-import { ASSET_UPDATING, ASSET_REQUESTING, CLIENT_UNSET } from '../constants/actionTypes';
+import api from 'app/api/AssetApi';
+import { ASSET_UPDATING, ASSET_REQUESTING, CLIENT_UNSET } from 'constants';
 import {
     assetUpdateSuccess,
     assetUpdateError,

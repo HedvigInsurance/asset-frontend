@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loginRequest } from '../../store/actions/loginActions';
-import LoginForm from '../../components/login-form/LoginForm.jsx';
+import { loginRequest } from 'app/store/actions/loginActions';
+import LoginForm from 'components/login-form/LoginForm';
 
 /* eslint-disable react/prop-types */
 class LoginPage extends React.Component {

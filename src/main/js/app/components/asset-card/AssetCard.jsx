@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Dropdown } from 'semantic-ui-react';
 import moment from 'moment';
-import { assetStates } from '../../lib/selectOptions';
+import { assetStates } from 'app/lib/selectOptions';
 
 /* eslint-disable react/prop-types */
 export default class AssetCard extends React.Component {
