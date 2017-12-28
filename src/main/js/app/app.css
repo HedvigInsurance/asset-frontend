@@ -2,6 +2,10 @@ html {
     font-size: 13px;
 }
 
+#react {
+    height: 100%;
+}
+
 .assets-list {
     min-height: 300px;
 }

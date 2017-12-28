@@ -3,6 +3,7 @@ import { Form, Button, Segment, Message } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import FormField from '../form-field/FormField';
 import { required, email } from 'app/lib/validation';
+import { Link } from 'react-router-dom';
 
 /* eslint-disable react/prop-types */
 class LoginForm extends React.Component {
@@ -41,6 +42,8 @@ class LoginForm extends React.Component {
                     >
                         Login
                     </Button>
+
+                    <Link to={{ pathname: '/messages/21'}}>go</Link>
                 </Form>
             </Segment>
         );
@@ -50,7 +53,9 @@ class LoginForm extends React.Component {
 const LoginFormErrors = errors => {
     return errors.errors.map((err, id) => (
         <Message negative key={id}>
-            <p>{err.status === 401 ? 'Wrong email or password' : err.message}</p>
+            <p>
+                {err.status === 401 ? 'Wrong email or password' : err.message}
+            </p>
         </Message>
     ));
 };

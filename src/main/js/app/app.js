@@ -19,7 +19,8 @@ export default class App extends React.Component {
                     <Switch>
                         <Route path="/login" component={Routes.LoginPageRoute} />
                         <Routes.PrivateRoute path="/assets" store={store} component={Routes.MainPageRoute} />
-                        <Redirect from="*" to="/assets"/>
+                        <Route path="/messages/:id" component={Routes.MessagesPageRoute} />
+                        <Redirect from="*" to="/messages/21"/>
                     </Switch>
                 </Router>
             </Provider>
