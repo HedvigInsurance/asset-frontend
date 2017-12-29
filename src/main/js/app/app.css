@@ -55,3 +55,8 @@ html {
     align-items: center;
     margin-top: 20px;
 }
+
+messages__input.messages__input {
+    margin: 0;
+    min-width: 300px;
+}
