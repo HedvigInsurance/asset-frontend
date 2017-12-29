@@ -17,3 +17,7 @@ export const CLIENT_UNSET = 'CLIENT_UNSET';
 
 export const POLL_START = 'POLL_START';
 export const POLL_STOP = 'POLL_STOP';
+
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED';

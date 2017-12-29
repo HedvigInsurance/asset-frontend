@@ -1,9 +1,11 @@
-import MainPageRoute from './MainPageRouter.jsx'
-import LoginPageRoute from './LoginPageRouter.jsx'
-import PrivateRoute from './PrivateRoute.jsx'
+import MainPageRoute from './MainPageRouter'
+import LoginPageRoute from './LoginPageRouter'
+import MessagesPageRoute from './MessagesPageRoute'
+import PrivateRoute from './PrivateRoute'
 
 export default {
     MainPageRoute,
     LoginPageRoute,
+    MessagesPageRoute,
     PrivateRoute
 }

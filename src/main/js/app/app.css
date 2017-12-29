@@ -2,6 +2,10 @@ html {
     font-size: 13px;
 }
 
+#react {
+    height: 100%;
+}
+
 .assets-list {
     min-height: 300px;
 }
@@ -50,4 +54,9 @@ html {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+}
+
+messages__input.messages__input {
+    margin: 0;
+    min-width: 300px;
 }
